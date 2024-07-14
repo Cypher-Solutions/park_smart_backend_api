@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-&aj8v-fllwyi9qxt_n7&m1o&50t-**ljr)75#b7iyfd&q@4mba
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ["smart-parking-spot-api-abf91efeed76.herokuapp.com", '127.0.0.1']
 
 
 # Application definition
