@@ -16,7 +16,7 @@ class Motorist(models.Model):
 class ParkingSpace(models.Model):
     type = models.CharField(max_length=10)
     address = models.CharField(max_length = 255)
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    price = models.DecimalField(max_digits=100, decimal_places=2, null=True)
     latitude = models.DecimalField(max_digits=10, decimal_places=6)
     longitude = models.DecimalField(max_digits=10, decimal_places=6)
     prepaid = models.BooleanField()
