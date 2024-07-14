@@ -16,6 +16,7 @@ import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+IS_HEROKU_APP = "DYNO" in os.environ and not "CI" in os.environ
 
 
 # Quick-start development settings - unsuitable for production
@@ -79,7 +80,7 @@ WSGI_APPLICATION = 'psba_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-if os.getenv('DATABASE_URL'):
+if IS_HEROKU_APP:
     # In production on Heroku the database configuration is derived from the `DATABASE_URL`
     # environment variable by the dj-database-url package. `DATABASE_URL` will be set
     # automatically by Heroku when a database addon is attached to your Heroku app. See:
