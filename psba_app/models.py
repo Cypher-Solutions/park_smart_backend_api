@@ -12,6 +12,9 @@ class Motorist(models.Model):
     full_name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=15)
 
+    def __str__(self):
+        return self.full_name
+
 
 class ParkingSpace(models.Model):
     type = models.CharField(max_length=10)
@@ -21,7 +24,10 @@ class ParkingSpace(models.Model):
     longitude = models.DecimalField(max_digits=10, decimal_places=6)
     prepaid = models.BooleanField()
     is_available = models.BooleanField(default=False)
-    space_id = models.CharField(max_length=255)
+    space_id = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.address
 
 
 class ParkedInfo(models.Model):
@@ -42,6 +48,10 @@ class ParkedInfo(models.Model):
     exitTime = models.DateTimeField(auto_now=True)
     totalParkingTime = models.DecimalField(max_digits=10, decimal_places=2)
 
+    def __str__(self) -> str:
+        return f"{self.owner.full_name} at {self.parking_space.address}"
+
+
 class Favourites(models.Model):
     owner = models.ForeignKey(
         Motorist,
@@ -55,6 +65,9 @@ class Favourites(models.Model):
         related_name="fav_space",
     )
 
+    def __str__(self) -> str:
+        return f"{self.parking_space.address}"
+
 
 
 class Vehicle(models.Model):
@@ -65,4 +78,7 @@ class Vehicle(models.Model):
     )
     car_reg = models.CharField(max_length=8)
     model = models.CharField(max_length=200,)
+
+    def __str__(self) -> str:
+        return self.model
 
